@@ -23,7 +23,7 @@ export default function Sidebar() {
                 <Link
                   href={item.href}
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 transition ${
-                    isActive ? "bg-black text-white" : "hover:bg-gray-100"
+                    isActive ? "bg-black text-white" : "hover:bg-gray-500"
                   }`}>
                   <Icon size={18} />
                   {item.name}
