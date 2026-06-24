@@ -13,12 +13,12 @@ import { salesData } from "@/data/sales";
 
 export default function SalesChart() {
   return (
-    <div className="rounded-xl border bg-white p-6 shadow-sm">
-      <h2 className="mb-6 text-xl font-semibold text-gray-700">
+    <div className="overflow-hidden rounded-xl border border-gray-800 bg-white p-4 text-gray-700 shadow-sm sm:p-6">
+      <h2 className="mb-4 text-lg font-semibold sm:mb-6 sm:text-xl">
         Monthly Sales
       </h2>
 
-      <div className="h-80">
+      <div className="h-72 sm:h-80">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={salesData}>
             <XAxis dataKey="month" />
