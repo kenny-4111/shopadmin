@@ -1,10 +1,12 @@
 export default function Navbar() {
   return (
-    <header className="border-b h-16 px-6 flex items-center justify-between">
-      <h2 className="font-semibold text-lg">Dashboard</h2>
+    <header className="flex h-16 items-center justify-between border-b border-gray-800 bg-[#111111] px-4 sm:px-6">
+      <h2 className="text-lg font-semibold text-gray-100 sm:text-xl">
+        Dashboard
+      </h2>
 
       <div className="flex items-center gap-4">
-        <div className="w-8 h-8 rounded-full bg-gray-300" />
+        <div className="h-8 w-8 rounded-full bg-gray-400" />
       </div>
     </header>
   );
