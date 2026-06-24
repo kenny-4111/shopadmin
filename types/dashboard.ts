@@ -3,3 +3,8 @@ export interface StatsCardProps {
   value: string | number;
   change: string | number;
 }
+
+export interface SalesData {
+  month: string;
+  sales: number;
+}
