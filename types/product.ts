@@ -5,3 +5,4 @@ export interface Product {
   price: number;
   stock: number;
 }
+export type NewProduct = Omit<Product, "id">;

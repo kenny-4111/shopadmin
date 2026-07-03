@@ -7,23 +7,23 @@ export default function RecentOrdersTable() {
       <h2 className="mb-4 text-lg font-semibold sm:text-xl">Recent Orders</h2>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full">
+        <table className="min-w-full text-sm sm:text-base">
           <thead>
-            <tr className="border-b text-left">
-              <th className="pb-3 pr-3">Order ID</th>
-              <th className="pb-3 pr-3">Customer</th>
-              <th className="pb-3 pr-3">Amount</th>
-              <th className="pb-3">Status</th>
+            <tr className="border-b text-left text-xs uppercase tracking-wide text-gray-500 sm:text-sm">
+              <th className="px-3 py-3">Order ID</th>
+              <th className="px-3 py-3">Customer</th>
+              <th className="px-3 py-3">Amount</th>
+              <th className="px-3 py-3">Status</th>
             </tr>
           </thead>
 
           <tbody>
             {orders.map((order) => (
-              <tr key={order.id} className="border-b">
-                <td className="py-3 pr-3">{order.id}</td>
-                <td className="py-3 pr-3">{order.customer}</td>
-                <td className="py-3 pr-3">${order.amount}</td>
-                <td className="py-3">
+              <tr key={order.id} className="border-b last:border-b-0">
+                <td className="px-3 py-4">{order.id}</td>
+                <td className="px-3 py-4">{order.customer}</td>
+                <td className="px-3 py-4">${order.amount}</td>
+                <td className="px-3 py-4">
                   <StatusBadge status={order.status} />
                 </td>
               </tr>
