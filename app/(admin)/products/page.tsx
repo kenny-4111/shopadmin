@@ -3,9 +3,11 @@
 import ProductTable from "@/components/tables/ProductTable";
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
+import { initialProducts } from "@/data/products";
 
 export default function ProductsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [products, setProducts] = useState(initialProducts);
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -18,7 +20,7 @@ export default function ProductsPage() {
         </button>
       </div>
 
-      <ProductTable />
+      <ProductTable products={products} />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2 className="mb-4 text-xl text-gray-700 font-semibold">

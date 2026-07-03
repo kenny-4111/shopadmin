@@ -1,7 +1,10 @@
-import { products } from "@/data/products";
+import { Product } from "@/types/product";
 import StockBadge from "@/components/ui/StockBadge";
 
-export default function ProductTable() {
+interface ProductTableProps {
+  products: Product[];
+}
+export default function ProductTable({ products }: ProductTableProps) {
   return (
     <div className="rounded-xl border bg-white text-gray-700 p-6 shadow-sm">
       <table className="w-full">
