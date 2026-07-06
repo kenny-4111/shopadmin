@@ -1,15 +1,40 @@
-import { NewProduct } from "@/types/product";
-import { useState } from "react";
+import { NewProduct, Product } from "@/types/product";
+import { useEffect, useState } from "react";
 interface ProductFormProps {
-  onAddProduct: (product: NewProduct) => void;
+  onSubmit: (product: NewProduct) => void;
+  initialData?: Product | null;
+  mode?: "add" | "edit";
 }
-export default function ProductForm({ onAddProduct }: ProductFormProps) {
+export default function ProductForm({
+  onSubmit,
+  initialData,
+  mode,
+}: ProductFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     category: "",
     price: "",
     stock: "",
   });
+  useEffect(() => {
+    if (initialData) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setFormData({
+        name: initialData.name,
+        category: initialData.category,
+        price: String(initialData.price),
+        stock: String(initialData.stock),
+      });
+    } else {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setFormData({
+        name: "",
+        category: "",
+        price: "",
+        stock: "",
+      });
+    }
+  }, [initialData]);
   function handleChange(field: string, value: string | number) {
     setFormData({
       ...formData,
@@ -24,7 +49,7 @@ export default function ProductForm({ onAddProduct }: ProductFormProps) {
       price: Number(formData.price),
       stock: Number(formData.stock),
     };
-    onAddProduct(newProduct);
+    onSubmit(newProduct);
   }
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -92,7 +117,7 @@ export default function ProductForm({ onAddProduct }: ProductFormProps) {
       <button
         type="submit"
         className="w-full rounded-lg bg-black py-2 text-white">
-        Save Product
+        {mode === "add" ? "Save Product" : "Update Product"}
       </button>
     </form>
   );
