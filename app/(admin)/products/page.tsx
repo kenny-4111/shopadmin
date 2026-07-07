@@ -27,25 +27,28 @@ export default function ProductsPage() {
       );
       setProducts(updatedProducts);
     }
-    setIsModalOpen(false);
-    setSelectedProduct(null);
+    handleCloseModal();
   }
 
   function handleEditProduct(product: Product) {
     setSelectedProduct(product);
     setIsModalOpen(true);
   }
-
+  function handleOpenModal() {
+    setSelectedProduct(null);
+    setIsModalOpen(true);
+  }
+  function handleCloseModal() {
+    setSelectedProduct(null);
+    setIsModalOpen(false);
+  }
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Products</h1>
 
         <button
-          onClick={() => {
-            setSelectedProduct(null);
-            setIsModalOpen(true);
-          }}
+          onClick={handleOpenModal}
           className="rounded-lg bg-black px-4 py-2 text-white">
           Add product
         </button>
@@ -53,12 +56,7 @@ export default function ProductsPage() {
 
       <ProductTable products={products} onEdit={handleEditProduct} />
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setSelectedProduct(null);
-          setIsModalOpen(false);
-        }}>
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <h2 className="mb-4 text-xl text-gray-700 font-semibold">
           {mode === "add" ? "Add Product" : "Edit Product"}
         </h2>
