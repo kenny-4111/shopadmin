@@ -11,6 +11,7 @@ export default function ProductsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [products, setProducts] = useState(initialProducts);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const mode = selectedProduct ? "edit" : "add";
 
   function handleSubmit(newProduct: NewProduct) {
@@ -42,6 +43,26 @@ export default function ProductsPage() {
     setSelectedProduct(null);
     setIsModalOpen(false);
   }
+  function handleDeleteProduct(productId: number) {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== productId),
+    );
+  }
+  function handleOpenDeleteModal(product: Product) {
+    setSelectedProduct(product);
+    setIsDeleteModalOpen(true);
+  }
+  function handleCloseDeleteModal() {
+    setSelectedProduct(null);
+    setIsDeleteModalOpen(false);
+  }
+
+  function handleConfirmDelete() {
+    if (!selectedProduct) return;
+    handleDeleteProduct(selectedProduct.id);
+    handleCloseDeleteModal();
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -54,7 +75,11 @@ export default function ProductsPage() {
         </button>
       </div>
 
-      <ProductTable products={products} onEdit={handleEditProduct} />
+      <ProductTable
+        products={products}
+        onEdit={handleEditProduct}
+        onDelete={handleOpenDeleteModal}
+      />
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <h2 className="mb-4 text-xl text-gray-700 font-semibold">
@@ -66,6 +91,28 @@ export default function ProductsPage() {
           onSubmit={handleSubmit}
           initialData={selectedProduct}
         />
+      </Modal>
+      {/* Delete confirmation modal*/}
+      <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
+        <h2 className="text-gray-900">Delete Product</h2>
+
+        <p className="mt-4 text-gray-700">
+          Are you sure you want to delete
+          <strong> {selectedProduct?.name}</strong>?
+        </p>
+
+        <div className="flex justify-end gap-3 mt-6">
+          <button
+            onClick={handleCloseDeleteModal}
+            className="rounded-lg border text-gray-900 px-4 py-2">
+            Cancel
+          </button>
+          <button
+            onClick={handleConfirmDelete}
+            className="rounded-lg bg-red-600 px-4 py-2 text-white">
+            Delete
+          </button>
+        </div>
       </Modal>
     </div>
   );
