@@ -4,8 +4,13 @@ import StockBadge from "@/components/ui/StockBadge";
 interface ProductTableProps {
   products: Product[];
   onEdit: (product: Product) => void;
+  onDelete?: (product: Product) => void;
 }
-export default function ProductTable({ products, onEdit }: ProductTableProps) {
+export default function ProductTable({
+  products,
+  onEdit,
+  onDelete,
+}: ProductTableProps) {
   return (
     <div className="overflow-x-auto rounded-xl border bg-white text-gray-700 p-4 shadow-sm sm:p-6">
       <table className="min-w-full text-sm sm:text-base">
@@ -35,6 +40,11 @@ export default function ProductTable({ products, onEdit }: ProductTableProps) {
                   onClick={() => onEdit(product)}
                   className="rounded-lg bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
                   Edit
+                </button>
+                <button
+                  onClick={() => onDelete?.(product)}
+                  className="ml-2 rounded-lg bg-red-500 px-3 py-1 text-white hover:bg-red-600">
+                  Delete
                 </button>
               </td>
             </tr>
