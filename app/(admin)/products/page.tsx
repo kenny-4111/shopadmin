@@ -12,8 +12,9 @@ export default function ProductsPage() {
   const [products, setProducts] = useState(initialProducts);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const mode = selectedProduct ? "edit" : "add";
-
   function handleSubmit(newProduct: NewProduct) {
     if (!selectedProduct) {
       const newId =
@@ -62,21 +63,57 @@ export default function ProductsPage() {
     handleDeleteProduct(selectedProduct.id);
     handleCloseDeleteModal();
   }
+  const search = searchTerm.toLowerCase();
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(search);
+    const matchesCategory =
+      selectedCategory === "All" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  // category filter
+  const categories = [
+    "All",
+    ...new Set(products.map((product) => product.category)),
+  ];
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Products</h1>
+      <h1 className="text-3xl font-bold">Products</h1>
 
-        <button
-          onClick={handleOpenModal}
-          className="rounded-lg bg-black px-4 py-2 text-white">
-          Add product
-        </button>
+      <div className="flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-wrap gap-3 sm:flex-row sm:items-center sm:gap-3 md:w-auto min-w-0">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="rounded-lg border px-3 py-2 text-white sm:w-auto w-full min-w-0 max-w-full text-gray-700 "
+          />
+          <div className="w-full min-w-0 max-w-full sm:w-auto">
+            <select
+              aria-label="Filter products by category"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="block w-full md:w-48 rounded-lg border px-3 py-2 text-gray-500 appearance-none">
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button
+            onClick={handleOpenModal}
+            className="w-full sm:w-auto rounded-lg bg-black px-4 py-2 text-white">
+            Add product
+          </button>
+        </div>
       </div>
 
       <ProductTable
-        products={products}
+        products={filteredProducts}
         onEdit={handleEditProduct}
         onDelete={handleOpenDeleteModal}
       />
