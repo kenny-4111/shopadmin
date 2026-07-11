@@ -14,6 +14,7 @@ export default function ProductsPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+
   const mode = selectedProduct ? "edit" : "add";
   function handleSubmit(newProduct: NewProduct) {
     if (!selectedProduct) {
@@ -63,6 +64,7 @@ export default function ProductsPage() {
     handleDeleteProduct(selectedProduct.id);
     handleCloseDeleteModal();
   }
+
   const search = searchTerm.toLowerCase();
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(search);
