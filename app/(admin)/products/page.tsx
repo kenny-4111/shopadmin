@@ -14,7 +14,7 @@ export default function ProductsPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-
+  const [sortBy, setSortBy] = useState("default");
   const mode = selectedProduct ? "edit" : "add";
   function handleSubmit(newProduct: NewProduct) {
     if (!selectedProduct) {
@@ -78,6 +78,24 @@ export default function ProductsPage() {
     "All",
     ...new Set(products.map((product) => product.category)),
   ];
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case "name-asc":
+        return a.name.localeCompare(b.name);
+      case "name-desc":
+        return b.name.localeCompare(a.name);
+      case "price-low":
+        return a.price - b.price;
+      case "price-high":
+        return b.price - a.price;
+      case "stock-low":
+        return a.stock - b.stock;
+      case "stock-high":
+        return b.stock - a.stock;
+      default:
+        return 0;
+    }
+  });
 
   return (
     <div className="space-y-6">
@@ -105,6 +123,21 @@ export default function ProductsPage() {
               ))}
             </select>
           </div>
+          <div className="w-full min-w-0 max-w-full sm:w-auto">
+            <select
+              aria-label="Sort products"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="block w-full md:w-48 rounded-lg border px-3 py-2 text-gray-500 appearance-none">
+              <option value="default">default</option>
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="price-low">Price (Low to High)</option>
+              <option value="price-high">Price (High to Low)</option>
+              <option value="stock-low">Stock (Low to High)</option>
+              <option value="stock-high">Stock (High to Low)</option>
+            </select>
+          </div>
 
           <button
             onClick={handleOpenModal}
@@ -115,7 +148,7 @@ export default function ProductsPage() {
       </div>
 
       <ProductTable
-        products={filteredProducts}
+        products={sortedProducts}
         onEdit={handleEditProduct}
         onDelete={handleOpenDeleteModal}
       />
