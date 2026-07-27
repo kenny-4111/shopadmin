@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductTable from "@/components/tables/ProductTable";
 import ProductForm from "@/components/forms/ProductForm";
 import Modal from "@/components/ui/Modal";
@@ -16,6 +16,19 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("default");
   const mode = selectedProduct ? "edit" : "add";
+
+  useEffect(() => {
+    const storedProducts = localStorage.getItem("products");
+
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+  }, [products]);
+
   function handleSubmit(newProduct: NewProduct) {
     if (!selectedProduct) {
       const newId =
