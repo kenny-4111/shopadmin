@@ -9,7 +9,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
   if (!order) return null;
 
   return (
-    <div className="space-y-6 text-gray-700">
+    <div className="space-y-6 text-gray-700 text-center">
       <h2 className="text-2xl font-bold text-gray-900">Order #{order.id}</h2>
 
       <div className="grid gap-4 sm:grid-cols-2">
