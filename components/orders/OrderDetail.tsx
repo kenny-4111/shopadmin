@@ -1,8 +1,8 @@
-import { Order } from "@/types/order";
+import { OrderWithCustomer } from "@/types/order";
 import StatusBadge from "../ui/StatusBadge";
 
 interface OrderDetailsProps {
-  order: Order | null;
+  order: OrderWithCustomer | null;
 }
 
 export default function OrderDetails({ order }: OrderDetailsProps) {
