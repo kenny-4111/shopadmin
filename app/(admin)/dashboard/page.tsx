@@ -7,7 +7,7 @@ import StatsGrid from "@/components/dashboard/StatsGrid";
 import SalesChart from "@/components/charts/SalesCharts";
 import { initialOrders } from "@/data/orders";
 import OrdersTable from "@/components/tables/OrdersTable";
-
+import { initialCustomers } from "@/data/customers";
 export default function DashboardPage() {
   const [products, setProducts] = useState<Product[]>(initialProducts);
 
@@ -18,7 +18,16 @@ export default function DashboardPage() {
       setProducts(JSON.parse(storedProducts) as Product[]);
     }
   }, []);
-  const recentOrders = initialOrders.slice(0, 5);
+  const recentOrders = initialOrders.slice(0, 5).map((order) => {
+    const customer = initialCustomers.find(
+      (customer) => customer.id === order.customerId,
+    );
+
+    return {
+      ...order,
+      customer: customer ? customer.name : "Unknown",
+    };
+  });
 
   return (
     <div className="space-y-6">

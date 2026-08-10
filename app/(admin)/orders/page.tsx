@@ -3,20 +3,34 @@
 import { useState } from "react";
 import OrdersTable from "@/components/tables/OrdersTable";
 import { initialOrders } from "@/data/orders";
-import { Order } from "@/types/order";
+import { Order, OrderWithCustomer } from "@/types/order";
 import Modal from "@/components/ui/Modal";
 import OrderDetails from "@/components/orders/OrderDetail";
+import { initialCustomers } from "@/data/customers";
 
 export default function OrdersPage() {
   const [orders] = useState<Order[]>(initialOrders);
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<OrderWithCustomer | null>(
+    null,
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sortOption, setSortOption] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
 
   const normalizedSearchTerm = searchTerm.toLowerCase();
-  const filteredOrders = orders.filter(
+
+  const ordersWithCustomer = orders.map((order) => {
+    const customer = initialCustomers.find(
+      (customer) => customer.id === order.customerId,
+    );
+
+    return {
+      ...order,
+      customer: customer ? customer.name : "Unknown",
+    };
+  });
+  const filteredOrders = ordersWithCustomer.filter(
     (order) =>
       order.customer.toLowerCase().includes(normalizedSearchTerm) ||
       order.id.toString().includes(normalizedSearchTerm) ||
@@ -48,7 +62,7 @@ export default function OrdersPage() {
     Math.ceil(sortedOrders.length / ordersPerPage),
   );
 
-  function handleViewOrder(order: Order) {
+  function handleViewOrder(order: OrderWithCustomer) {
     setSelectedOrder(order);
     setIsModalOpen(true);
   }

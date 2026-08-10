@@ -1,9 +1,13 @@
 export interface Order {
   id: number;
-  customer: string;
+  customerId: number;
   date: string;
   total: number;
   items: number;
   paymentMethod: "Card" | "Bank Transfer" | "Cash on Delivery";
   status: "Pending" | "Processing" | "Delivered" | "Cancelled";
+}
+
+export interface OrderWithCustomer extends Order {
+  customer: string;
 }
