@@ -1,6 +1,6 @@
 export interface Order {
   id: number;
-  customer: string;
+  customerId: number;
   date: string;
   total: number;
   items: number;

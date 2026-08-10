@@ -1,0 +1,81 @@
+import { Customer } from "@/types/customer";
+
+export const initialCustomers: Customer[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john.doe@example.com",
+    phone: "081-411-7890",
+    joinedAt: "2023-01-01",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane.smith@example.com",
+    phone: "081-411-7891",
+    joinedAt: "2023-01-02",
+  },
+  {
+    id: 3,
+    name: "Bob Johnson",
+    email: "bob.johnson@example.com",
+    phone: "081-411-7892",
+    joinedAt: "2023-01-03",
+  },
+  {
+    id: 4,
+    name: "Alice Williams",
+    email: "alice.williams@example.com",
+    phone: "081-411-7893",
+    joinedAt: "2023-01-04",
+  },
+  {
+    id: 5,
+    name: "Charlie Brown",
+    email: "charlie.brown@example.com",
+    phone: "081-411-7894",
+    joinedAt: "2023-01-05",
+  },
+  {
+    id: 6,
+    name: "Diana Miller",
+    email: "diana.miller@example.com",
+    phone: "081-411-7895",
+    joinedAt: "2023-01-06",
+  },
+  {
+    id: 7,
+    name: "Eve Davis",
+    email: "eve.davis@example.com",
+    phone: "081-411-7896",
+    joinedAt: "2023-01-07",
+  },
+  {
+    id: 8,
+    name: "Frank Wilson",
+    email: "frank.wilson@example.com",
+    phone: "081-411-7897",
+    joinedAt: "2023-01-08",
+  },
+  {
+    id: 9,
+    name: "Grace Lee",
+    email: "grace.lee@example.com",
+    phone: "081-411-7898",
+    joinedAt: "2023-01-09",
+  },
+  {
+    id: 10,
+    name: "Hank Taylor",
+    email: "hank.taylor@example.com",
+    phone: "081-411-7899",
+    joinedAt: "2023-01-10",
+  },
+  {
+    id: 11,
+    name: "Ivy Clark",
+    email: "ivy.clark@example.com",
+    phone: "081-411-7900",
+    joinedAt: "2023-01-11",
+  },
+];

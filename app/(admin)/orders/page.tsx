@@ -18,7 +18,7 @@ export default function OrdersPage() {
   const normalizedSearchTerm = searchTerm.toLowerCase();
   const filteredOrders = orders.filter(
     (order) =>
-      order.customer.toLowerCase().includes(normalizedSearchTerm) ||
+      order.customerId.toString().includes(normalizedSearchTerm) ||
       order.id.toString().includes(normalizedSearchTerm) ||
       order.status.toLowerCase().includes(normalizedSearchTerm) ||
       order.date.includes(normalizedSearchTerm),

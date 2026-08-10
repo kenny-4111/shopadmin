@@ -3,7 +3,7 @@ import { Order } from "@/types/order";
 export const initialOrders: Order[] = [
   {
     id: 1001,
-    customer: "John Doe",
+    customerId: 1,
     date: "2026-07-28",
     items: 4,
     total: 120,
@@ -12,7 +12,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1002,
-    customer: "Mary Jane",
+    customerId: 2,
     date: "2026-07-28",
     items: 5,
     total: 75,
@@ -21,7 +21,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1003,
-    customer: "David Paul",
+    customerId: 1,
     date: "2026-07-27",
     items: 6,
     total: 210,
@@ -30,7 +30,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1004,
-    customer: "Sarah Johnson",
+    customerId: 3,
     date: "2026-07-27",
     items: 2,
     total: 95,
@@ -39,7 +39,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1005,
-    customer: "Michael Brown",
+    customerId: 2,
     date: "2026-07-26",
     items: 5,
     total: 320,
@@ -48,7 +48,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1006,
-    customer: "Kehinde Oluyole",
+    customerId: 4,
     date: "2026-07-26",
     items: 1,
     total: 50,
@@ -57,7 +57,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1007,
-    customer: "Emily Davis",
+    customerId: 1,
     date: "2026-07-26",
     items: 3,
     total: 180,
@@ -66,7 +66,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1008,
-    customer: "William Wilson",
+    customerId: 5,
     date: "2026-07-25",
     items: 2,
     total: 120,
@@ -75,7 +75,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1009,
-    customer: "Olivia Martinez",
+    customerId: 6,
     date: "2026-07-25",
     items: 4,
     total: 200,
@@ -84,7 +84,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1010,
-    customer: "James Anderson",
+    customerId: 7,
     date: "2026-07-24",
     items: 3,
     total: 150,
@@ -93,7 +93,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1011,
-    customer: "Sophia Thomas",
+    customerId: 8,
     date: "2026-07-24",
     items: 5,
     total: 250,
@@ -102,7 +102,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1012,
-    customer: "Benjamin Lee",
+    customerId: 9,
     date: "2026-07-23",
     items: 2,
     total: 100,
@@ -111,7 +111,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1013,
-    customer: "Ava Harris",
+    customerId: 10,
     date: "2026-07-23",
     items: 4,
     total: 200,
@@ -120,7 +120,7 @@ export const initialOrders: Order[] = [
   },
   {
     id: 1014,
-    customer: "Ethan Clark",
+    customerId: 11,
     date: "2026-07-23",
     items: 3,
     total: 150,
