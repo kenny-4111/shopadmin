@@ -1,10 +1,10 @@
-import { Order } from "@/types/order";
+import { OrderWithCustomer } from "@/types/order";
 import StatusBadge from "../ui/StatusBadge";
 
 interface OrdersTableProps {
-  orders: Order[];
+  orders: OrderWithCustomer[];
   title?: string;
-  onView?: (order: Order) => void;
+  onView?: (order: OrderWithCustomer) => void;
   showActions?: boolean;
 }
 

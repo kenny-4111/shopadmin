@@ -7,3 +7,7 @@ export interface Order {
   paymentMethod: "Card" | "Bank Transfer" | "Cash on Delivery";
   status: "Pending" | "Processing" | "Delivered" | "Cancelled";
 }
+
+export interface OrderWithCustomer extends Order {
+  customer: string;
+}

@@ -6,6 +6,7 @@ import { initialOrders } from "@/data/orders";
 import { Order } from "@/types/order";
 import Modal from "@/components/ui/Modal";
 import OrderDetails from "@/components/orders/OrderDetail";
+import { initialCustomers } from "@/data/customers";
 
 export default function OrdersPage() {
   const [orders] = useState<Order[]>(initialOrders);
@@ -16,9 +17,20 @@ export default function OrdersPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const normalizedSearchTerm = searchTerm.toLowerCase();
-  const filteredOrders = orders.filter(
+
+  const ordersWithCustomer = orders.map((order) => {
+    const customer = initialCustomers.find(
+      (customer) => customer.id === order.customerId,
+    );
+
+    return {
+      ...order,
+      customer: customer ? customer.name : "Unknown",
+    };
+  });
+  const filteredOrders = ordersWithCustomer.filter(
     (order) =>
-      order.customerId.toString().includes(normalizedSearchTerm) ||
+      order.customer.toLowerCase().includes(normalizedSearchTerm) ||
       order.id.toString().includes(normalizedSearchTerm) ||
       order.status.toLowerCase().includes(normalizedSearchTerm) ||
       order.date.includes(normalizedSearchTerm),
