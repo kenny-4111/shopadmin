@@ -9,9 +9,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { salesData } from "@/data/sales";
+interface salesChartsProps {
+  data: {
+    month: string;
+    sales: number;
+  }[];
+}
 
-export default function SalesChart() {
+export default function SalesChart({ data }: salesChartsProps) {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-800 bg-white p-4 text-gray-700 shadow-sm sm:p-6">
       <h2 className="mb-4 text-lg font-semibold sm:mb-6 sm:text-xl">
@@ -20,7 +25,7 @@ export default function SalesChart() {
 
       <div className="h-72 sm:h-80">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={salesData}>
+          <LineChart data={data}>
             <XAxis dataKey="month" />
             <YAxis />
             <Tooltip />
