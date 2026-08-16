@@ -8,6 +8,7 @@ import SalesChart from "@/components/charts/SalesCharts";
 import { initialOrders } from "@/data/orders";
 import OrdersTable from "@/components/tables/OrdersTable";
 import { initialCustomers } from "@/data/customers";
+import { salesData } from "@/data/sales";
 export default function DashboardPage() {
   const [products, setProducts] = useState<Product[]>(initialProducts);
 
@@ -35,7 +36,7 @@ export default function DashboardPage() {
 
       <StatsGrid products={products} />
 
-      <SalesChart />
+      <SalesChart data={salesData} />
       <OrdersTable
         title="Recent orders"
         orders={recentOrders}

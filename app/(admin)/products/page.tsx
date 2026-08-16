@@ -121,7 +121,7 @@ export default function ProductsPage() {
             placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="rounded-lg border px-3 py-2 text-white sm:w-auto w-full min-w-0 max-w-full text-gray-700 "
+            className="rounded-lg border px-3 py-2 text-white sm:w-auto w-full min-w-0 max-w-ful "
           />
           <div className="w-full min-w-0 max-w-full sm:w-auto">
             <select
